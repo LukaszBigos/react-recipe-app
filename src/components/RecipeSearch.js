@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 export default class RecipeSearch extends Component {
-
   render() {
     const { value, handleChange, handleSubmit } = this.props;
     return (
@@ -18,12 +17,22 @@ export default class RecipeSearch extends Component {
                   type recipes seperated by comma
                 </label>
                 <div className="input-group">
-                <input type="text" name="search" placeholder="chicken,onions,carrots" className="form-control" onChange={handleChange} value={value}/>
-                <div className="input-group-append">
-                <button type="submit" className="input-group-text bg-primary text-white">
-                  <i className="fas fa-search"></i>
-                </button>
-                </div>
+                  <input
+                    type="text"
+                    name="search"
+                    placeholder="chicken,onions,carrots"
+                    className="form-control"
+                    onChange={handleChange}
+                    value={value}
+                  />
+                  <div className="input-group-append">
+                    <button
+                      type="submit"
+                      className="input-group-text bg-primary text-white"
+                    >
+                      <i className="fas fa-search" />
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

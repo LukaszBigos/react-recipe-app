@@ -13,7 +13,8 @@ export default class App extends Component {
     details_id: 35381,
     pageIndex: 1,
     search: "",
-    query: "&q="
+    query: "&q=",
+    error: ""
   };
 
   async getRecipes() {
@@ -21,9 +22,20 @@ export default class App extends Component {
       const res = await fetch(this.state.url);
       console.log("url for query: " + this.state.url);
       const jsonData = await res.json();
-      this.setState({
-        recipes: jsonData.recipes
-      });
+      if (jsonData.recipes.length === 0) {
+        this.setState(() => {
+          return {
+            error: "sorry, but your search did not return any results"
+          };
+        });
+      } else {
+        this.setState(() => {
+          return {
+            error: '',
+            recipes: jsonData.recipes
+          };
+        });
+      }
     } catch (err) {
       console.log(err);
     }
@@ -44,6 +56,7 @@ export default class App extends Component {
             value={this.state.search}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
+            error={this.state.error}
           />
         );
       case 2:
